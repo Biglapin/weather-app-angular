@@ -1,0 +1,71 @@
+<div class="row container-weather">
+  <div class="col md-6">
+    <div *ngIf="weather; else waiting">
+    <div class="col-sm-12 text-center">
+      <h2>Weather in {{ weather.name }}, {{ weather.sys.country }} </h2>
+    </div>
+
+
+    <div class="input-group mt-5">
+      <input class="form-control" type="text" #userInput placeholder="Enter City Name">
+    </div>
+    <div class="input-group-append mt-3">
+      <button class="input-group-text btn btn-outline-success" (click)="getCity(userInput.value)"> Search </button>
+    </div>
+
+
+    <div class="col-sm-12">
+      <span class="temp"><img src="assets/icons/{{ weather.weather[0].icon}}.png" alt="">
+      {{ weather.main.temp | number: '1.0-0' }}&deg;C</span>
+        <p class="text-uppercase font-italic font-weight-bold"> {{ weather.weather[0].description }}</p>
+    </div>
+
+    <!-- Table with all informations about the weather-->
+    <table class="table">
+      <tbody>
+        <tr>
+          <td>Humidity : </td> <td> {{ weather.main.humidity}} %</td>
+        </tr>
+        <tr>
+          <td>Pressure : </td> <td> {{ weather.main.pressure}} hpa</td>
+        </tr>
+        <tr>
+          <td>Sunrise : </td> <td> {{ weather.sys.sunrise * 1000 | date: 'H:mm'}}</td>
+        </tr>
+        <tr>
+          <td>Sunset : </td> <td> {{ weather.sys.sunset * 1000 | date: 'H:mm'}}</td>
+        </tr>
+        <tr>
+          <td>Geo coords : </td> <td> longitude : {{ weather.coord.lon }}, latitude : {{ weather.coord.lat }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Display maps -->
+    <agm-map [latitude]="lat" [longitude]="lon" class="google" id="map-google-container" (mapClick)="getCoords($event)">
+      <agm-marker [latitude]="lat" [longitude]="lon"></agm-marker>
+    </agm-map>
+    </div>
+
+    <ng-template #waiting>
+      <div>
+        <img src="https://media3.giphy.com/media/l0Exrmj1AVJUbBuSI/giphy.gif?cid=ecf05e47q2eaqehwwjmknifrdebkxeyihlvbx7eo4uw3pn9s&rid=giphy.gif&ct=g" 
+        alt="gif waiting location"
+        *ngIf="locationIsDefined">
+      </div>
+      <h5>Please accept or refuse you location</h5>
+
+
+
+    <div class="input-group mt-5" *ngIf="locationDefinedEnableCity">
+      <input class="form-control" type="text" #userInput placeholder="Enter City Name">
+      <div class="input-group-append">
+        <button class="input-group-text btn btn-outline-success" (click)="getCity(userInput.value)"> Search </button>
+      </div>
+    </div>
+
+    </ng-template>
+
+
+  </div>
+</div>

@@ -1,0 +1,40 @@
+h1, h2{
+  color: #5ed4a7;
+}
+agm-map ::ng-deep .agm-map-container-inner{
+  margin: auto;  
+}
+.google {
+  height: 500px;
+  width: 500px;
+}
+
+.container-weather {
+  justify-content: center;
+  text-align: center;
+}
+.input-group {
+  width: 50%;
+  margin: auto; 
+}
+.form-control {
+/*border-radius: 32px;
+  border-top-right-radius: 32px!important;
+  border-bottom-right-radius: 32px!important; */
+
+}
+.btn-outline-success{
+  margin-left: 1rem;
+  color: #5ed4a7;
+  border-color: #5ed4a7;
+  border-radius: 32px;
+  padding: 12px 32px;
+  transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out, border-color 0.25s ease-in-out;
+  font-weight: 600;
+}
+
+.btn:hover {
+  color: #fff;
+  background-color: #004157;
+  border-color: #004157;
+}
